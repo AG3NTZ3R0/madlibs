@@ -1,24 +1,37 @@
-adjective_count = 1
-adjective = [input("Enter an adjective: ") for adj in range(adjective_count)]
+from random import choice, shuffle
 
-exclamation_count = 1
-exclamation = [input("Enter an exclamation: ") for exc in range(exclamation_count)]
 
-noun_count = 5
-noun = [input("Enter a noun: ") for n in range(noun_count)]
+def gather_words(pos, qty=3):
+    """
+    Store a part of speech within a list to be shuffled and utilized to populate a madlib.\n
+    qty: The number of parts of speech a user will be prompted to enter.\n
+    :return: A shuffled list of parts of speech entered by the user.
+    """
+    parts_of_speech = [input(f"Enter a(n) {pos}: ") for word in range(qty)]
+    shuffle(parts_of_speech)
+    return parts_of_speech
 
-noun_plural_count = 1
-noun_plural = [input("Enter a plural noun: ") for ns in range(noun_plural_count)]
 
-verb_ending_in_ing_count = 2
-verb_ending_in_ing = [input("Enter a verb ending in -ing: ") for v_ing in range(verb_ending_in_ing_count)]
+# Populate lists
+adjective = gather_words('adjective')
+noun = gather_words('noun', qty=5)
+noun_plural = gather_words('plural noun')
+verb_ending_in_ing = gather_words('veb ending in -ing')
 
-verb_past_tense_count = 1
-verb_past_tense = [input("Enter a past tense verb: ") for v_past in range(verb_past_tense_count)]
+madlib1 = f"A vacation is when you take a trip to some {adjective[0]} place with your {adjective[1]} family.\nUsually \
+you go to some place that is near a/an {noun[0]} or up on a/an {noun[1]}.\nA good vacation place is one where you can \
+ride {noun_plural[0]} or play corn hole or go hunting for {noun_plural[1]}.\nI like to spend my time \
+{verb_ending_in_ing[0]} or relaxing.\nWhen parents go on a vacation, they spend their time eating \
+three {noun_plural[2]} a day, and fathers play golf, and mothers sit around {verb_ending_in_ing[1]}.\nLast summer, \
+my little brother fell in a/an {noun[2]} and got poison ivy all over his leg.\nMy family is going to go to the \
+beach, and I will practice {verb_ending_in_ing[2]}.\nParents need vacations more than kids because parents are always \
+very {adjective[2]} and because they have to work 3 hours every day all year making enough money for the vacation."
 
-madlib = f"\"Put your hands up\" said the {noun[0]}.\n\"You're under arrest for {verb_ending_in_ing[0]} the {noun[1]} \
-at the {noun[2]}\".\n\"{exclamation[0]}!\" thought Frank.\nHis hands were {verb_ending_in_ing[1]} like \
-{noun_plural[0]} on a {noun[3]}.\nThis wasn't the first time he had {verb_past_tense[0]} a {noun[4]} and he knew \
-he was in {adjective[0]} trouble.\n "
+madlib2 = f"\"Look!\", said my mother.\nI turned my head and saw a(n) {adjective[0]} {noun[0]} jumping \
+up and down in a tree.\nHe ran straight through the large tunnel that led to its {adjective[1]} {noun[1]}.\nI got some \
+peanuts and passed them through the cage to a gigantic gray {noun[2]} who ate them pleasantly and smiled.\nWhat a day \
+it was today."
 
-print(madlib)
+if __name__ == '__main__':
+    # Print a random madlib
+    print(choice([madlib1, madlib2]))
